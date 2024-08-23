@@ -28,3 +28,8 @@ python3 test_basic_api_example.py
 ```
 python3 test_local_predict_cmd.py
 ```
+
+
+cog predict -i workflow=test0
+
+cog predict -i workflow=test1

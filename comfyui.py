@@ -200,9 +200,13 @@ class ComfyUI:
 
     def load_workflow(self, workflow):
         if not isinstance(workflow, dict):
+            print(workflow)
+            print('---')
             wf = json.loads(workflow)
+            
         else:
             wf = workflow
+            print('===')
 
         # There are two types of ComfyUI JSON
         # We need the API version
@@ -211,7 +215,7 @@ class ComfyUI:
                 "You need to use the API JSON version of a ComfyUI workflow. To do this go to your ComfyUI settings and turn on 'Enable Dev mode Options'. Then you can save your ComfyUI workflow via the 'Save (API Format)' button."
             )
 
-        self.handle_known_unsupported_nodes(wf)
+        # self.handle_known_unsupported_nodes(wf)
         self.handle_inputs(wf)
         self.handle_weights(wf)
         return wf

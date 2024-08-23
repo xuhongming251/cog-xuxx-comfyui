@@ -34,7 +34,7 @@ workflow_api_json = {
   },
   "4": {
     "inputs": {
-      "ckpt_name": "OIA Flash_v1.0.safetensors"
+      "ckpt_name": "majicmixRealistic_v7.safetensors"
     },
     "class_type": "CheckpointLoaderSimple",
     "_meta": {
