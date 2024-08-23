@@ -27,8 +27,12 @@ build:
     - albumentations==1.4.3
 
     # comfyui-reactor-node
-    - insightface
-    - onnx
+    - insightface==0.7.3
+    - onnx>=1.14.0
+    - opencv-python>=4.7.0.72
+    - numpy
+    - segment_anything
+    - ultralytics
 
   run:
     - curl -o /usr/local/bin/pget -L "https://github.com/replicate/pget/releases/download/v0.8.1/pget_linux_x86_64" && chmod +x /usr/local/bin/pget

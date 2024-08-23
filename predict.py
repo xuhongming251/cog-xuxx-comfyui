@@ -33,15 +33,30 @@ class Predictor(BasePredictor):
         self,
         workflow: str = Input(
             default="",
-        )
-    ) -> Path:
-        
-        print(workflow)
+        ),
+        output_format: str = optimise_images.predict_output_format(),
+        output_quality: int = optimise_images.predict_output_quality(),        
+        force_reset_cache: bool = Input(
+            description="Force reset the ComfyUI cache before running the workflow. Useful for debugging.",
+            default=False,
+        ),
+    ) -> List[Path]:
         
         self.comfyUI.cleanup(ALL_DIRECTORIES)
-        seed = seed_helper.generate(seed)
 
         self.comfyUI.connect()
-        self.comfyUI.run_workflow(workflow)
+        
+        if force_reset_cache:
+            self.comfyUI.reset_execution_cache()
 
-        return Path("./test.png")
+        self.comfyUI.run_workflow(json.loads(workflow))
+        
+        output_directories = [OUTPUT_DIR]
+
+        ret_img_list = optimise_images.optimise_image_files(
+            output_format, output_quality, self.comfyUI.get_files(output_directories)
+        )
+
+        # print(ret_img_list)
+
+        return ret_img_list
