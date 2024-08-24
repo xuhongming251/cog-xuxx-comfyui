@@ -76,7 +76,8 @@ cog predict -i workflow=test1
 
 6. add github action for push model.(see `.github\workflows\push.yml`)
    1. need config secret REPLICATE_API_TOKEN at github config use [replicate api token, see Step 2、3](https://replicate.com/docs/guides/push-a-model-using-github-actions).
-   2. push action
+   2. need config PAT_TOKEN to access pull submodule for github actions. [config setp by step](https://stackoverflow.com/questions/65077036/how-to-checkout-submodule-in-github-action)
+   3. push action
 
 7. add custom node and publish
    1. add custom_nodes pip deps in `cog.yaml`
