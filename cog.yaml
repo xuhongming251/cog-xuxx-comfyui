@@ -3,6 +3,7 @@ build:
   cuda: "12.1"
   python_version: "3.10.6"
   python_packages:
+    # comfyui pip env deps
     - torch
     - torchvision
     - torchaudio
@@ -26,6 +27,13 @@ build:
     # https://github.com/replicate/cog/issues/1623
     - albumentations==1.4.3
 
+
+    #######################################
+    ##
+    ## add custom nodes pip deps below
+    ##
+    ######################################    
+
     # comfyui-reactor-node
     - insightface==0.7.3
     - onnx>=1.14.0
@@ -35,6 +43,7 @@ build:
     - ultralytics
 
   run:
+    # other cmd
     - curl -o /usr/local/bin/pget -L "https://github.com/replicate/pget/releases/download/v0.8.1/pget_linux_x86_64" && chmod +x /usr/local/bin/pget
     - pip install onnxruntime-gpu --extra-index-url https://aiinfra.pkgs.visualstudio.com/PublicPackages/_packaging/onnxruntime-cuda-12/pypi/simple/
 predict: "predict.py:Predictor"

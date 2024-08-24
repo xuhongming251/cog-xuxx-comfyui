@@ -197,10 +197,27 @@ test_flow1 = """
   }
 }
 """
+
+
+# for download dynamic 
+config_weihts_use_in_work_flow = [
+    "majicmixRealistic_v7.safetensors"
+]
+
+
 class Predictor(BasePredictor):
+    
     def setup(self):
+        
+        print("begin start comfyui.")
         self.comfyUI = ComfyUI("127.0.0.1:8188")
         self.comfyUI.start_server(OUTPUT_DIR, INPUT_DIR)
+
+        print("begin download checkpoints.")
+        self.comfyUI.handle_weights(
+            {},
+            weights_to_download=config_weihts_use_in_work_flow,
+        )
 
     def predict(
         self,

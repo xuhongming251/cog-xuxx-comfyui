@@ -200,13 +200,10 @@ class ComfyUI:
 
     def load_workflow(self, workflow):
         if not isinstance(workflow, dict):
-            print(workflow)
-            print('---')
             wf = json.loads(workflow)
             
         else:
             wf = workflow
-            print('===')
 
         # There are two types of ComfyUI JSON
         # We need the API version
@@ -216,7 +213,10 @@ class ComfyUI:
             )
 
         # self.handle_known_unsupported_nodes(wf)
+        print("begin download image for input")
         self.handle_inputs(wf)
+
+        print("begin download others models in work flow")
         self.handle_weights(wf)
         return wf
 
